@@ -1,0 +1,18 @@
+{
+  "name": "learningtypescript_1",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "ts-node ./src/server.ts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Adrian Curia",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "ts-node": "^9.1.1",
+    "typescript": "^4.1.3"
+  }
+}
