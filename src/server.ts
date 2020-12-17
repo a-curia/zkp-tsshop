@@ -1,38 +1,15 @@
-import * as express from 'express';
-import * as bodyParser from 'body-parser';
+  
+import 'dotenv/config';
+import PostController from './post/post.controller';
+import App from './app';
+import validateEnv from './utils/validateEnv';
 
-function loggerMiddleware(request: express.Request, response: express.Response, next) {
-    console.log(`${request.method} ${request.path}`);
-    next();
-}
-
+validateEnv();
  
-const app = express();
-const router = express.Router();
-
-app.use(loggerMiddleware);
-app.use(bodyParser.json());
-app.use('/api', router);
-
-
-app.get('/hello', (request, response) => {
-  response.send('Hello world!');
-});
-
-app.post('/bodyparser', (request, response) => {
-    response.send(request.body);
-});
-
-router.get('/userouter', (request, response) => {
-    response.send('Hello world!');
-});
+const app = new App(
+  [
+    new PostController(),
+  ],
+);
  
-app.get('/customresponse', (request, response) => {
-    response.send({
-      hostname: request.hostname,
-      path: request.path,
-      method: request.method,
-    });
-});
-
-app.listen(4500);
+app.listen();
